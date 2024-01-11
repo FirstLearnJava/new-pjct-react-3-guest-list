@@ -103,10 +103,17 @@ export default function Guests(props) {
           setUserAttending(locatedUser.attending);
           console.log(locatedUser.attending);
           getAllGuests();
+        } else {
+          setUserAttending(false);
         }
       }
     }
   }
+  useEffect(() => {
+    if (firstName && lastName) {
+      adaptAttendingStatus(firstName, lastName);
+    }
+  }, [firstName, lastName]);
 
   useEffect(() => {
     getAllGuests();
@@ -117,6 +124,18 @@ export default function Guests(props) {
     }
   }, [allGuests]);
 
+  /*   function getGuestAttributes() {
+    useEffect(() => {
+      if (allGuests) {
+        allGuests.map((guest) => {
+          console.log(guest.firstName);
+          return guest.firstName;
+          // <li>{guest.attending}</li>
+        });
+      }
+    }, [allGuests]);
+  }
+ */
   return (
     <>
       <div data-test-id="guest">
@@ -153,7 +172,7 @@ export default function Guests(props) {
               }}
               onChange={(e) => {
                 setLastName(e.currentTarget.value);
-                adaptAttendingStatus(firstName, lastName);
+                //adaptAttendingStatus(firstName, lastName);
               }}
             ></input>
           </label>
@@ -180,6 +199,22 @@ export default function Guests(props) {
             ></input>
           </label>
         </form>
+        <div>
+          <h1>Guest List</h1>
+          {allGuests !== undefined ? (
+            <div>
+              {allGuests.map((guest) => (
+                <ul>
+                  <li key={guest.id}>{guest.firstName}</li>
+                  <li key={guest.id}>{guest.lastName}</li>
+                  <li key={guest.id}>
+                    {guest.attending === true ? 'yes' : 'no'}
+                  </li>
+                </ul>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </div>
     </>
   );

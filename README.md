@@ -18,7 +18,7 @@ Create a guest list app using React that allows for:
   - [x] On the second click of the attending checkbox, the guest needs to be set to not attending (the checkbox needs to be unchecked)
 - [x] Set up [this API](https://github.com/upleveled/express-guest-list-api-memory-data-store) and read the docs to understand how you can use it to store and retrieve data:
   - [x] Save any changes to the API
-  - [ ] Load the guest list from this API
+  - [x] Load the guest list from this API
 - [ ] While the guest list is first loaded from the API (on page load):
   - [ ] Show a loading message containing the text `Loading...`
   - [ ] Disable the form fields
