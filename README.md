@@ -19,9 +19,9 @@ Create a guest list app using React that allows for:
 - [x] Set up [this API](https://github.com/upleveled/express-guest-list-api-memory-data-store) and read the docs to understand how you can use it to store and retrieve data:
   - [x] Save any changes to the API
   - [x] Load the guest list from this API
-- [ ] While the guest list is first loaded from the API (on page load):
-  - [ ] Show a loading message containing the text `Loading...`
-  - [ ] Disable the form fields
+- [x] While the guest list is first loaded from the API (on page load):
+  - [x] Show a loading message containing the text `Loading...`
+  - [x] Disable the form fields
 
 The default view should show all guests in the list.
 

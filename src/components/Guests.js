@@ -4,6 +4,7 @@ export default function Guests(props) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [allGuests, setAllGuests] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const [userAttending, setUserAttending] = useState(false);
 
   async function getSingleGuest() {
@@ -12,9 +13,11 @@ export default function Guests(props) {
   }
 
   async function getAllGuests() {
+    setIsLoading(true);
     const response = await fetch(`${props.baseUrl}/guests`);
     const allGuestsArray = await response.json();
     setAllGuests(allGuestsArray);
+    setIsLoading(false);
   }
 
   async function createGuest() {
@@ -153,6 +156,7 @@ export default function Guests(props) {
               value={firstName}
               placeholder="First name"
               id="first_name"
+              disabled={isLoading}
               onChange={(e) => {
                 setFirstName(e.currentTarget.value);
               }}
@@ -163,6 +167,7 @@ export default function Guests(props) {
             <input
               value={lastName}
               placeholder="Last name"
+              disabled={isLoading}
               onKeyDown={(e) => {
                 if (e.code == 'Enter') {
                   createGuest();
@@ -179,6 +184,7 @@ export default function Guests(props) {
           <button
             type="button"
             aria-label={`Remove ${firstName} ${lastName}`}
+            disabled={isLoading}
             onClick={() => {
               getUserIdAndRemoveUser(firstName, lastName);
             }}
@@ -192,6 +198,7 @@ export default function Guests(props) {
               id="attending_checkbox"
               aria-label={`${firstName} ${lastName} attending status`}
               checked={userAttending}
+              disabled={isLoading}
               onChange={() => {
                 //setUserAttending(!userAttending);
                 getUserIdAndChangeAttendingStatus(firstName, lastName);
@@ -201,7 +208,9 @@ export default function Guests(props) {
         </form>
         <div>
           <h1>Guest List</h1>
-          {allGuests !== undefined ? (
+          {isLoading ? (
+            'Loading...'
+          ) : allGuests !== undefined ? (
             <div>
               {allGuests.map((guest) => (
                 <ul>

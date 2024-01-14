@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@upleveled/react-scripts": "5.0.13",
+    "new-pjct-react-3-guest-list": "link:",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
